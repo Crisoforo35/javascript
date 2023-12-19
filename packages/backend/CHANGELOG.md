@@ -1,5 +1,20 @@
 # Change Log
 
+## 1.0.0-alpha-v5.11
+
+### Minor Changes
+
+- Add `createOrganizationEnabled` param in `@clerk/backend` method `User.updateUser()` ([#2415](https://github.com/clerk/javascript/pull/2415)) by [@dimkl](https://github.com/dimkl)
+
+  Example:
+
+  ```typescript
+      import { createClerkClient }  from '@clerk/backend';
+
+      const clerkClient = createClerkClient({...});
+      await clerkClient.users.updateUser('user_...', { createOrganizationEnabled: true })
+  ```
+
 ## 1.0.0-alpha-v5.10
 
 ### Major Changes
