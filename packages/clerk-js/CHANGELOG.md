@@ -1,5 +1,13 @@
 # Change Log
 
+## 4.67.1
+
+### Patch Changes
+
+- Bug fix: Clear feedback of input field if `setError` is called with undefined. ([#2409](https://github.com/clerk/javascript/pull/2409)) by [@panteliselef](https://github.com/panteliselef)
+
+- Prevent submitting on enter in Organization Profile form when submit button is disabled. ([#2401](https://github.com/clerk/javascript/pull/2401)) by [@panteliselef](https://github.com/panteliselef)
+
 ## 4.67.0
 
 ### Minor Changes
