@@ -1,20 +1,17 @@
-import { useClerk, useUser } from '@clerk/shared/react';
+import { useUser } from '@clerk/shared/react';
 
-import { useEnvironment } from '../../contexts';
+import { useSignOutContext } from '../../contexts';
 import { Col, localizationKeys, Text } from '../../customizables';
 import { Form, FormButtons, FormContent, useCardState, withCardStateProvider } from '../../elements';
 import { useActionContext } from '../../elements/Action/ActionRoot';
-import { useRouter } from '../../router';
 import { handleError, useFormControl } from '../../utils';
 import { UserProfileBreadcrumbs } from './UserProfileNavbar';
 
 export const DeleteUserForm = withCardStateProvider(() => {
   const card = useCardState();
   const { close } = useActionContext();
-  const environment = useEnvironment();
-  const router = useRouter();
+  const { navigateAfterSignOut } = useSignOutContext();
   const { user } = useUser();
-  const clerk = useClerk();
 
   const deleteUser = async () => {
     try {
@@ -23,11 +20,7 @@ export const DeleteUserForm = withCardStateProvider(() => {
       }
 
       await user.delete();
-      if (clerk.client.activeSessions.length > 0) {
-        await router.navigate(environment.displayConfig.afterSignOutOneUrl);
-      } else {
-        await router.navigate(environment.displayConfig.afterSignOutAllUrl);
-      }
+      await navigateAfterSignOut();
     } catch (e) {
       handleError(e, [], card.setError);
     }
